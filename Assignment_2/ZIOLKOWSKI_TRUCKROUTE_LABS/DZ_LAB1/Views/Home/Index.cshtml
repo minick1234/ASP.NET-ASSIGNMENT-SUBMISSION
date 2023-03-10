@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Html;
+@using System.Web;
+
+@using Microsoft.AspNetCore.Mvc.Localization;
+
+@model UserProfile
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-2">Welcome</h1>
+    <hr style="height:5px;" />
+    <div style="border: medium solid black;">
+
+        <h2 class="display-7">To create an account please fill out the information below:</h2>
+        <br />
+        <div>
+            <form method="post" asp-action="CreateAccount">
+                <div asp-validation-summary="None" class="text-danger "></div>
+                <div class="validation-summary-errors">
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Where(s => s.Value.Errors.Count != 0).SelectMany(s => s.Value.Errors))
+                        {
+                            <li class="text-danger">@Html.Raw(error.ErrorMessage)</li>
+                        }
+                    </ul>
+                </div>
+                <span asp-validation-for="_EmailAddress" class="text-danger">
+                </span>
+                <label class="control-label">Please enter in an email:</label>
+                <input type="email" asp-for="_EmailAddress" class="form-control" />
+
+                <span asp-validation-for="_Password" class="text-danger"></span>
+                <label class="ps-3">Please enter in a password:</label>
+                <input type="password" asp-for="_Password" class="form-control" />
+
+                <span asp-validation-for="_ConfirmationPassword" class="text-danger"></span>
+                <label class="control-label">Please enter in the password again:</label>
+                <input type="password" asp-for="_ConfirmationPassword" class="form-control" />
+
+                <span asp-validation-for="_FirstName" class="text-danger"></span>
+                <label class="control-label">Please enter in your first name:</label>
+                <input asp-for="_FirstName" class="form-control" />
+
+                <span asp-validation-for="_LastName" class="text-danger"></span>
+                <label class="control-label">Please enter in your last name:</label>
+                <input asp-for="_LastName" class="form-control" />
+
+                <span asp-validation-for="_PhoneNumber" class="text-danger"></span>
+                <label class="control-label">Please enter in your phone number:</label>
+                <input type="tel" asp-for="_PhoneNumber" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+
+                <br />
+                <input type="submit" value="Create Your Account" class="btn btn-primary" />
+                <a asp-action="Login" class="btn btn-primary">Login</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,79 @@
+﻿@model RoutePath
+<h1>Add a Route</h1>
+
+<h4>Route Information</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RoutePath">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Route Number</label>
+                <input asp-for="routeNumber" class="form-control" />
+                <span asp-validation-for="routeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Route Name</label>
+                <input asp-for="routeName" class="form-control" />
+                <span asp-validation-for="routeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Route Length</label>
+                <input asp-for="routeLength" class="form-control" />
+                <span asp-validation-for="routeLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Route Pay Per KM</label>
+                <input asp-for="routePayPerKM" class="form-control" />
+                <span asp-validation-for="routePayPerKM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Route" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="DashBoard">Back to Dashboard</a>
+</div>
+
+<table class="table">
+    <h2>Route Database</h2>
+    <thead>
+        <tr>
+            <th>
+                Route Number
+            </th>
+
+            <th>
+                Route Name
+            </th>
+
+            <th>
+                Route Length
+            </th>
+            <th>Route Pay Per KM</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RoutePath item in RouteRepository._RouteList)
+        {
+            <tr>
+                <td>
+                    @item.routeNumber;
+                </td>
+                <td>
+                    @item.routeName;
+                </td>
+                <td>
+                    @item.routeLength;
+                </td>
+                <td>
+                    @item.routePayPerKM;
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
