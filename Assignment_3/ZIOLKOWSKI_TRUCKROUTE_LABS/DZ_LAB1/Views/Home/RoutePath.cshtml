@@ -1,0 +1,87 @@
+﻿@model RoutePath
+
+<h1>Add a Route</h1>
+
+<h4>Route Information</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RoutePathAdd">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Route Number</label>
+                <input asp-for="@Model.routeNumber" class="form-control" />
+                <span asp-validation-for="@Model.routeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Route Name</label>
+                <input asp-for="@Model.routeName" class="form-control" />
+                <span asp-validation-for="@Model.routeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Route Length</label>
+                <input asp-for="@Model.routeLength" class="form-control" />
+                <span asp-validation-for="@Model.routeLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Route Pay Per KM</label>
+                <input asp-for="@Model.routePayPerKM" class="form-control" />
+                <span asp-validation-for="@Model.routePayPerKM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Route" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="DashBoard">Back to Dashboard</a>
+</div>
+
+<table class="table">
+    <h2>Route Database</h2>
+    <thead>
+        <tr>
+            <th>
+                Route Number
+            </th>
+
+            <th>
+                Route Name
+            </th>
+
+            <th>
+                Route Length
+            </th>
+            <th>Route Pay Per KM</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RoutePath item in ViewBag.RoutesList)
+        {
+            <tr>
+                <td>
+                    @item.routeNumber
+                </td>
+                <td>
+                    @item.routeName
+                </td>
+                <td>
+                    @item.routeLength/KM
+                </td>
+                <td>
+                    $@item.routePayPerKM
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,87 @@
+﻿@model Truck
+<h1>Add a truck</h1>
+
+<h4>Truck Information</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="TruckAdd" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Truck Number</label>
+                <input asp-for="@Model.truckNum" class="form-control" />
+                <span asp-validation-for="@Model.truckNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Truck Model</label>
+                <input asp-for="@Model.truckModel" class="form-control" />
+                <span asp-validation-for="@Model.truckModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Truck Make</label>
+                <input asp-for="@Model.truckMake" class="form-control" />
+                <span asp-validation-for="@Model.truckMake" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Truck Route Number</label>
+                <input asp-for="@Model.truckRouteNumber" class="form-control" />
+                <span asp-validation-for="@Model.truckRouteNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Truck" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="DashBoard">Back to Dashboard</a>
+</div>
+
+
+
+<table class="table">
+    <h2>Truck Database</h2>
+    <thead>
+        <tr>
+            <th>
+                Truck Number
+            </th>
+            <th>
+                Truck Model
+            </th>
+            <th>
+                Truck Make
+            </th>
+            <th>
+                Truck Route Number
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Truck truckItem in ViewBag.TrucksList)
+        {
+            <tr>
+                <td>
+                    @truckItem.truckNum
+                </td>
+                <td>
+                    @truckItem.truckModel
+                </td>
+                <td>
+                    @truckItem.truckMake
+                </td>
+                <td>
+                    @truckItem.truckRouteNumber
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
