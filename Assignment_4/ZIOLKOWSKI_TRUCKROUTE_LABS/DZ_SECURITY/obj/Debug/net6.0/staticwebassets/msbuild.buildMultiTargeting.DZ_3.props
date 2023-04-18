@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DZ_3.props" />
+</Project>

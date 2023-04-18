@@ -1,0 +1,96 @@
+﻿@using DZ_LAB1.Models
+@model DZ_LAB1.Models.DashBoardContainerValues
+
+
+<h1>
+    Welcome to the dashboard @Model.profile._FirstName @Model.profile._LastName
+</h1>
+<h4>Currently logged in with email: @Model.profile._EmailAddress</h4>
+
+<p>
+    <a asp-action="Truck" class="btn btn-primary">Create New Truck</a>
+    <a asp-action="RoutePath" class="btn btn-primary">Create New Route</a>
+    <a asp-action="TruckWorkshop" class="btn btn-primary">Create New Truck Workshop Order</a>
+
+    <a asp-action="Logout" class="btn btn-primary">Sign Out</a>
+</p>
+<table class="table">
+    <h2>Truck Database</h2>
+    <thead>
+        <tr>
+            <th>
+                Truck Number
+            </th>
+               <th>
+                Truck Model
+            </th>
+            <th>
+                Truck Make
+            </th>
+            <th>
+                Truck Route Number
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Truck truckItem in Model.trucks)
+        {
+            <tr>
+                <td>
+                    @truckItem.truckNum
+                </td>
+                <td>
+                    @truckItem.truckModel
+                </td>
+                <td>
+                    @truckItem.truckMake
+                </td>
+                <td>
+                    @truckItem.truckRouteNumber
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <h2>Route Database</h2>
+    <thead>
+        <tr>
+            <th>
+                Route Number
+            </th>
+
+            <th>
+                Route Name
+            </th>
+
+            <th>
+                Route Length
+            </th>
+            <th>Route Pay Per KM</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (RoutePath item in Model.routes)
+        {
+            <tr>
+                <td>
+                    @item.routeNumber
+                </td>
+                <td>
+                    @item.routeName
+                </td>
+                <td>
+                    @item.routeLength/KM
+                </td>
+                <td>
+                    $@item.routePayPerKM
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
